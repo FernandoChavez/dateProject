@@ -2,7 +2,9 @@ import React, {Fragment, useState} from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-const Formulario = () => {
+//En vez de traer props y dentro del codigo, poner props,crearCita
+// mejor aplica destructuring
+const Formulario = ({crearCita}) => {
 
     //Crear State de Citas
     const[cita, actualizarCita] = useState({
@@ -51,22 +53,36 @@ const Formulario = () => {
             // Es necesario clocar un return para que no se siga ejecutando el codigo
             return;
         }
-
         //ELIMINAR EL MENSAJE PREVIO
         actualizarError(false);
 
 
+        
         // ASIGNAR UN ID
+        /*
         actualizarCita({
             ...cita,
             id: uuidv4()
-        });
-        
-        console.log(cita);
+        })
+        */
+        cita.id = uuidv4();
 
+       
+        
+        
+
+       
         // CREAR LISTA
+        crearCita(cita);
 
         // REINICIAR FORM
+        actualizarCita({
+            mascota: '',
+            propietario: '',
+            fecha: '',
+            hora: '',
+            sintomas: ''
+        })
     }
 
 
